@@ -1,10 +1,12 @@
 import {AppComponent} from './app.component'
+import {RouterModule} from '@angular/router'
 import {TestBed} from '@angular/core/testing'
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, RouterModule.forRoot([])],
+      declarations: [AppComponent],
     }).compileComponents()
   })
 
