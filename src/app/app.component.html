@@ -195,10 +195,34 @@
   }
 </style>
 
-<main class="main">
-  <div class="content">
-    <router-outlet />
-  </div>
+<main class="main-container">
+  <header class="header">
+    <div class="logo">
+      <h1>GENCRUD</h1>
+    </div>
+    <nav class="nav-menu">
+      <ul>
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="active-link"
+            >Lista de usuários</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/create-user"
+            routerLinkActive="active-link"
+            >Criar usuário</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="content-section">
+    <router-outlet></router-outlet>
+  </section>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->

@@ -1,25 +1,36 @@
 import {Component} from '@angular/core'
+import {FormsModule} from '@angular/forms'
+import {Router} from '@angular/router'
+import {UserService} from '../user.service'
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.css',
+  styleUrls: ['./user-form.component.css'],
 })
-export class UserFormComponent {}
-// export class UserFormComponent {
-//   name: string = ''
-//   email: string = ''
+export class UserFormComponent {
+  name: string = ''
+  email: string = ''
 
-//   constructor(
-//     private userService: UserService,
-//     private router: Router,
-//   ) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+  ) {}
 
-//   createUser() {
-//     this.userService.createUser(this.name, this.email).subscribe(() => {
-//       this.router.navigate(['/'])
-//     })
-//   }
-// }
+  createUser() {
+    if (this.name && this.email) {
+      this.userService.createUser(this.name, this.email).subscribe(
+        () => {
+          this.router.navigate(['/'])
+        },
+        (error) => {
+          console.error('Error creating user:', error)
+        },
+      )
+    } else {
+      console.error('Name and Email are required')
+    }
+  }
+}

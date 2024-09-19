@@ -1,19 +1,37 @@
-<div>
-  <h2>Criar Novo Usuário</h2>
-  <form>
-    <label for="name">Nome:</label>
-    <input
-      name="name"
-      required
-    />
+<section class="form-container">
+  <h2>Crie novo usuário</h2>
+  <form
+    (ngSubmit)="createUser()"
+    class="user-form"
+  >
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input
+        [(ngModel)]="name"
+        id="name"
+        name="name"
+        required
+        placeholder="Digite o nome de usuário"
+      />
+    </div>
 
-    <label for="email">Email:</label>
-    <input
-      name="email"
-      required
-      type="email"
-    />
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        [(ngModel)]="email"
+        id="email"
+        name="email"
+        required
+        type="email"
+        placeholder="Digite email do usuário"
+      />
+    </div>
 
-    <button type="submit">Criar Usuário</button>
+    <button
+      type="submit"
+      class="submit-btn"
+    >
+      Criar usuário
+    </button>
   </form>
-</div>
+</section>

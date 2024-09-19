@@ -1,9 +1,72 @@
-<div>
-  <h2>Lista de Usuários</h2>
-  <ul>
-    <li>
-      <button>Excluir</button>
-    </li>
-  </ul>
-  <a routerLink="/create-user">Criar Novo Usuário</a>
-</div>
+<section class="user-list-container">
+  <div
+    *ngIf="loading; else userListTemplate"
+    class="loading-container"
+  >
+    <div class="spinner"></div>
+    <p>Dados de carregamento...</p>
+  </div>
+
+  <ng-template #userListTemplate>
+    <h2 class="center title">Usuárias</h2>
+    <div
+      *ngIf="users.length; else noData"
+      class="users-grid"
+    >
+      <div
+        *ngFor="let user of users"
+        class="user-card"
+      >
+        <p>
+          <strong>{{ user.name }}</strong>
+        </p>
+        <p>{{ user.email }}</p>
+        <button (click)="removeUser(user.id)">Excluir</button>
+        <button (click)="startEditing(user)">Editar</button>
+      </div>
+    </div>
+
+    <ng-template #noData>
+      <p class="no-data-message">Nenhum usuário encontrado.</p>
+    </ng-template>
+  </ng-template>
+
+  <div
+    *ngIf="error"
+    class="error-container"
+  >
+    <p>Erro ao carregar usuários: {{ error }}</p>
+  </div>
+
+  <div
+    *ngIf="editingUser"
+    class="edit-user-container"
+  >
+    <h3>Editar usuário</h3>
+    <form (ngSubmit)="updateUser()">
+      <label>
+        Nome:
+        <input
+          [(ngModel)]="updatedName"
+          name="name"
+          required
+        />
+      </label>
+      <label>
+        E-mail:
+        <input
+          [(ngModel)]="updatedEmail"
+          name="email"
+          required
+        />
+      </label>
+      <button type="submit">Atualizar</button>
+      <button
+        type="button"
+        (click)="cancelEdit()"
+      >
+        Cancelar
+      </button>
+    </form>
+  </div>
+</section>
