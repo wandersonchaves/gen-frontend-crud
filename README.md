@@ -14,7 +14,6 @@
   - [Serviços](#serviços)
     - [UserService](#userservice)
   - [Rotas](#rotas)
-  - [Testes](#testes)
     - [Exemplo de teste para o UserService](#exemplo-de-teste-para-o-userservice)
   - [Como Executar](#como-executar)
   - [Comandos Úteis](#comandos-úteis)
@@ -60,13 +59,11 @@ Esta aplicação é uma interface de usuário desenvolvida em Angular que se com
 ### UserListComponent
 
 - **Responsabilidade**: Listar, atualizar e deletar todos os usuários.
-- **Template**: Exibe uma lista de usuários e botoes para atualizar e deletar o criação.
+- **Template**: Exibe uma lista de usuários com botões para atualizar e deletar o usuário.
 - **Métodos**:
   - `loadUsers()`: Carrega os usuários usando a query GraphQL.
   - `updateUser()`: Chama a mutation GraphQL para atualizar um usuário.
   - `deleteUser()`: Chama a mutation GraphQL para deletar um usuário.
-
-
 
 ```typescript
 @Component({
@@ -117,12 +114,7 @@ export class UserService {
 
 - **`/`**: Rota principal que exibe a lista de usuários (`UserListComponent`).
 - **`/create-user`**: Rota que exibe o formulário para criar um novo usuário (`UserFormComponent`).
-
-## Testes
-
-- **Testando Componentes**: Os testes garantem que os componentes sejam criados e que suas funcionalidades sejam executadas corretamente.
-- **Testando Serviços**: Os testes do `UserService` verificam se as chamadas à API estão funcionando como esperado.
-
+  
 ### Exemplo de teste para o UserService
 
 ```typescript
@@ -145,5 +137,5 @@ describe('UserService', () => {
 
 ## Comandos Úteis
 
-- **Servidor de Desenvolvimento**: Execute `ng serve` para iniciar o servidor e acesse a aplicação em `http://localhost:4200/`. A aplicação será recarregada automaticamente ao modificar arquivos de origem.
-- **Execução de Testes Unitários**: Execute `ng test` para executar os testes unitários via [Karma](https://karma-runner.github.io).
+- **Servidor de Desenvolvimento**: Execute `pnpm start` para iniciar o servidor e acesse a aplicação em `http://localhost:4200/`. A aplicação será recarregada automaticamente ao modificar arquivos de origem.
+- **Execução de Testes Unitários**: Execute `pnpm run test` para executar os testes unitários via [Karma](https://karma-runner.github.io).
