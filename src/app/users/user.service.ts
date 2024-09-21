@@ -1,8 +1,9 @@
-import {Apollo, gql} from 'apollo-angular'
-import {Observable, of} from 'rxjs'
-import {catchError, map} from 'rxjs/operators'
+import { Apollo, gql } from 'apollo-angular';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
-import {Injectable} from '@angular/core'
+import { Injectable } from '@angular/core';
+
 import type {User} from '@/types'
 
 const GET_USERS = gql`
@@ -47,7 +48,6 @@ const REMOVE_USER = gql`
 export class UserService {
   constructor(private apollo: Apollo) {}
 
-  // Método para obter todos os usuários
   getUsers(): Observable<User[]> {
     return this.apollo
       .watchQuery<{users: User[]}>({
@@ -62,13 +62,12 @@ export class UserService {
       )
   }
 
-  // Método para criar um novo usuário
   createUser(name: string, email: string): Observable<User | null> {
     return this.apollo
       .mutate<{createUser: User}>({
         mutation: CREATE_USER,
         variables: {name, email},
-        refetchQueries: [{query: GET_USERS}], // Refetch após criação
+        refetchQueries: [{query: GET_USERS}],
       })
       .pipe(
         map((result) => result.data?.createUser ?? null),
@@ -79,7 +78,6 @@ export class UserService {
       )
   }
 
-  // Método para atualizar um usuário existente
   updateUser(id: number, name: string, email: string): Observable<User | null> {
     const updateUserInput = {id: Number(id), name, email}
 
@@ -98,13 +96,12 @@ export class UserService {
       )
   }
 
-  // Método para remover um usuário
   removeUser(id: number): Observable<boolean> {
     return this.apollo
       .mutate<{removeUser: boolean}>({
         mutation: REMOVE_USER,
         variables: {id},
-        refetchQueries: [{query: GET_USERS}], // Refetch após exclusão
+        refetchQueries: [{query: GET_USERS}],
       })
       .pipe(
         map((result) => result.data?.removeUser ?? false),

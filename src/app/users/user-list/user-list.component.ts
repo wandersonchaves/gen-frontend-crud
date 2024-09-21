@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core'
+import { User } from '@/types';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import {CommonModule} from '@angular/common'
-import {FormsModule} from '@angular/forms'
-import {User} from '@/types'
-import {UserService} from '../user.service'
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -28,27 +28,27 @@ export class UserListComponent implements OnInit {
 
   fetchUsers() {
     this.loading = true
-    this.userService.getUsers().subscribe(
-      (users) => {
+    this.userService.getUsers().subscribe({
+      next: (users) => {
         this.users = users
         this.loading = false
       },
-      (error) => {
+      error: (error) => {
         this.handleError(error)
       },
-    )
+    })
   }
 
   removeUser(id: number) {
-    this.userService.removeUser(Number(id)).subscribe(
-      () => {
+    this.userService.removeUser(Number(id)).subscribe({
+      next: () => {
         console.log('User removed successfully')
         this.fetchUsers()
       },
-      (error) => {
+      error: (error) => {
         this.handleError(error)
       },
-    )
+    })
   }
 
   startEditing(user: User) {
@@ -61,18 +61,18 @@ export class UserListComponent implements OnInit {
     if (this.editingUser) {
       this.userService
         .updateUser(this.editingUser.id, this.updatedName, this.updatedEmail)
-        .subscribe(
-          (updatedUser) => {
+        .subscribe({
+          next: (updatedUser) => {
             if (updatedUser) {
               console.log('User updated successfully')
               this.fetchUsers()
               this.editingUser = null
             }
           },
-          (error) => {
+          error: (error) => {
             this.handleError(error)
           },
-        )
+        })
     }
   }
 

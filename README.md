@@ -120,8 +120,6 @@ export class UserService {
 
 ## Testes
 
-Os testes são configurados para garantir a funcionalidade correta da aplicação. Cada componente e serviço possui seus próprios testes.
-
 - **Testando Componentes**: Os testes garantem que os componentes sejam criados e que suas funcionalidades sejam executadas corretamente.
 - **Testando Serviços**: Os testes do `UserService` verificam se as chamadas à API estão funcionando como esperado.
 

@@ -1,7 +1,8 @@
-import {Component} from '@angular/core'
-import {FormsModule} from '@angular/forms'
-import {Router} from '@angular/router'
-import {UserService} from '../user.service'
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -21,14 +22,17 @@ export class UserFormComponent {
 
   createUser() {
     if (this.name && this.email) {
-      this.userService.createUser(this.name, this.email).subscribe(
-        () => {
+      this.userService.createUser(this.name, this.email).subscribe({
+        next: () => {
           this.router.navigate(['/'])
         },
-        (error) => {
+        error: (error) => {
           console.error('Error creating user:', error)
         },
-      )
+        complete: () => {
+          console.log('User creation complete')
+        },
+      })
     } else {
       console.error('Name and Email are required')
     }

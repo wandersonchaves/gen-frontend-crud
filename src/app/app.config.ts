@@ -1,14 +1,12 @@
-import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core'
-import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http'
-import {provideRouter} from '@angular/router'
-import {Apollo, APOLLO_OPTIONS} from 'apollo-angular'
-import {HttpLink} from 'apollo-angular/http'
-import {
-  ApolloLink,
-  InMemoryCache,
-  type ApolloClientOptions,
-} from '@apollo/client/core'
-import {routes} from './app.routes'
+import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
+
+import { routes } from './app.routes';
 
 const GRAPHQL_URL = 'http://localhost:3000/graphql'
 
